@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Employee>
+
+@{ 
+    
+    ViewBag.Title = "Employee List";
+}
+
+   
+<div class="card-deck m-1">
+    @foreach(var employee in Model)
+    {
+        var PhotoPath = "~/images/" + (employee.PhotoPath ?? "pp.jpg");
+        <div class="card m-1" style="min-width: 18rem; max-width:30.5%;"><!--to display 3 cards for each row-->
+            <div class="card-header">
+                <h3>@employee.Name</h3>
+            </div>
+            <img class="card-img-top " style="height:300px;width:auto;" src="@PhotoPath" asp-append-version="true" />
+            <div class="card-footer text-center">
+
+                <!--Tag helper tech name of controller , name of action,
+                    the argument sended to this action asp-route-thenameofvariable if exist-->
+                <a asp-controller="home" asp-action="details" asp-route-id="@employee.Id" class="btn btn-danger m-1" >Tag</a>
+                <!--End of Tag helper tech-->
+                <!--URL action -->
+                <a href="@Url.Action("details", "home", new { id = employee.Id })" class="btn btn-dark m-1">URL</a>
+                <!--End of URL tech-->
+                <!--HTML action -->
+                <br />
+                @Html.ActionLink("HTML", "details","home", new { id = employee.Id })
+                <br />
+                <!--End of HTML ACTION-->
+                <a href="/home/details/@employee.Id" class="btn btn-primary m-1">View</a>
+                <a asp-controller="home" asp-action="edit" asp-route-id="@employee.Id" class="btn btn-warning m-1">Edit</a>
+                <a href="#" class="btn btn-primary m-1">Delete</a>
+            </div>
+        </div>
+            
+    }
+</div>

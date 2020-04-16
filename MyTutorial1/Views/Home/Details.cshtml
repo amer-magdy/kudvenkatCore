@@ -1,0 +1,56 @@
+﻿@model HomeDetailsViewModel
+
+@{
+    
+    ViewBag.Title = "Employee Details";
+    var PhotoPath = "~/images/" + (Model.Employee.PhotoPath ?? "pp.jpg");
+}
+<!--<h3>@ViewData["PageTitle"]</h3>
+    <h3>@ViewBag.PageTitle</h3>
+    
+
+<h3>@Model.PageTitle</h3>
+@{ // string type the only one transform independently any other type should be transforms manualy
+//var employee = ViewData["Employee"] as MyTutorial1.Models.Employee;
+//<div>
+//  Name: @employee.Name @ViewBag.Employee.Name @ViewBag.Employee.Name//////@Model.Name
+//</div>
+}
+old
+<div>
+    Strongly Typed View
+    Name:
+</div>
+<div>
+    E-mail: 
+</div>
+<div>
+    Department: 
+</div>-->
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Employee.Name</h1>
+            </div>
+
+            <div class="card-body text-center">
+                <img class="card-img-top" src="@PhotoPath" asp-append-version="true"/>
+
+                <h4>Employee ID : @Model.Employee.Id</h4>
+                <h4>Email : @Model.Employee.Email</h4>
+                <h4>Department : @Model.Employee.Department</h4>
+
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="home" asp-action="index" class="btn btn-primary">Back</a>
+                <a class="btn btn-warning" asp-controller="home" asp-action="edit" asp-route-id="@Model.Employee.Id">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{ 
+    <script src="~/js/CustomScript.js"></script>
+}
